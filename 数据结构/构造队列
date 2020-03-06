@@ -1,0 +1,24 @@
+class Queue:
+    def __init__(self):
+        self.queue = list()
+
+    def add_top(self, data):
+        if data not in self.queue:
+            self.queue.insert(0, data)
+            return True
+        return False
+
+    def remove(self):
+        if len(self.queue) > 0:
+            return self.queue.pop()
+        return '没有元素可以输出'
+
+
+TheQueue = Queue()
+TheQueue.add_top(1)
+TheQueue.add_top(2)
+TheQueue.add_top(3)
+print(TheQueue.remove())
+print(TheQueue.remove())
+print(TheQueue.remove())
+print(TheQueue.remove())
