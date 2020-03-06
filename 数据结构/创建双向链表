@@ -1,0 +1,57 @@
+# 调用尾插法请将头插法代码注释，反之亦然
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+
+class double_link_list:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    # 头插法
+    def head_push(self, next_val):
+        NewNode = Node(next_val)
+        NewNode.next = self.head
+        if self.head is not None:
+            self.head.prev = NewNode
+        self.head = NewNode
+
+    # 尾插法
+    def tail_push(self, next_val):
+        NewNode = Node(next_val)
+        NewNode.prev = self.tail
+        if self.tail is not None:
+            self.tail.next = NewNode
+        self.tail = NewNode
+
+    # 头插法输出
+    def double_link_print(self):
+        print_val = self.tail
+        while print_val:
+            print(print_val.data)
+            print_val = print_val.prev
+
+    # 尾插法输出
+    def double_link_print_1(self):
+        print_val = self.tail
+        while print_val:
+            print(print_val.data)
+            print_val = print_val.prev
+
+
+# 头插法
+d_list = double_link_list()
+d_list.head_push(1)
+d_list.head_push(2)
+d_list.head_push(3)
+d_list.double_link_print()
+
+# 尾插法
+d_list_1 = double_link_list()
+d_list_1.tail_push(4)
+d_list_1.tail_push(5)
+d_list_1.tail_push(6)
+d_list_1.double_link_print_1()
