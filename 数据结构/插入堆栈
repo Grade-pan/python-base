@@ -1,0 +1,21 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def add(self, data):
+        if data not in self.stack:
+            self.stack.append(data)
+            return True
+        else:
+            return False
+
+    def peek(self):
+        return self.stack[0]
+
+
+AStack = Stack()
+AStack.add('1')
+AStack.add('2')
+AStack.add('3')
+AStack.add('4')
+print(AStack.peek())
