@@ -1,0 +1,31 @@
+import collections
+
+print('*' * 30)
+DoubleEnded = collections.deque(['1', '2', '3'])
+print(DoubleEnded)
+print('*' * 30)
+
+print('从右端插入')
+DoubleEnded.append('4')
+print(DoubleEnded)
+print('*' * 30)
+
+print('从左端插入')
+DoubleEnded.appendleft('0')
+print(DoubleEnded)
+print('*' * 30)
+
+print('从右端移除')
+DoubleEnded.pop()
+print(DoubleEnded)
+print('*' * 30)
+
+print('从左端移除')
+DoubleEnded.popleft()
+print(DoubleEnded)
+print('*' * 30)
+
+print('翻转队列')
+DoubleEnded.reverse()
+print(DoubleEnded)
+print('*' * 30)
