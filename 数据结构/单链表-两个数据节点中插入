@@ -1,0 +1,36 @@
+class Node:
+    def __init__(self, dataval=None):
+        self.dataval = dataval
+        self.nextval = None
+
+
+class SLinkedList:
+    def __init__(self):
+        self.headval = None
+
+    def AtBetween(self, middle_node, newdata):
+        NewNode = Node(newdata)
+        if middle_node is None:
+            print('插入失败')
+            return
+
+        NewNode.nextval = middle_node.nextval
+        middle_node.nextval = NewNode
+
+    def listprint(self):
+        printval = self.headval
+        while printval:
+            print(printval.dataval)
+            printval = printval.nextval
+
+
+list = SLinkedList()
+list.headval = Node('1')
+
+e2 = Node('3')
+e3 = Node('4')
+list.headval.nextval = e2
+e2.nextval = e3
+
+list.AtBetween(list.headval, '2')
+list.listprint()
