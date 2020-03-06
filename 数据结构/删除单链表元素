@@ -1,0 +1,48 @@
+class Node:
+    def __init__(self, dataval):
+        self.dataval = dataval
+        self.nextval = None
+
+
+class SLinkedList:
+    def __init__(self):
+        self.headval = None
+
+    def deltelink(self, data):
+        # 当删除的是头时
+        N_node = Node(data)
+        if N_node.dataval == self.headval.dataval:
+            self.headval = self.headval.nextval
+            return
+        # 删除其他位置
+        laste = self.headval
+        while laste.nextval.dataval is not N_node.dataval:
+            laste = laste.nextval
+        laste.nextval = laste.nextval.nextval
+
+    def listprint(self):
+        printval = self.headval
+        while printval:
+            print(printval.dataval)
+            printval = printval.nextval
+
+
+list = SLinkedList()
+list.headval = Node(0)
+
+e1 = Node(1)
+e2 = Node(2)
+e3 = Node(3)
+e4 = Node(4)
+e5 = Node(5)
+e6 = Node(6)
+e7 = Node(7)
+list.headval.nextval = e1
+e1.nextval = e2
+e2.nextval = e3
+e3.nextval = e4
+e4.nextval = e5
+e5.nextval = e6
+e6.nextval = e7
+list.deltelink(7)
+list.listprint()
