@@ -1,0 +1,158 @@
+# 从二叉查找树BST中查找元素X，返回其所在结点的地址，查找的次数取决于树的高度。
+class Node:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+def depth(root):
+    if root is None:
+        return 0
+    else:
+        return 1 + max(depth(root.left), depth(root.right))
+
+
+# 先序遍历,递归实现
+def first_xu(root):
+    if root is None:
+        return
+    print(root.val, ' ', end='')
+    first_xu(root.left)
+    first_xu(root.right)
+
+
+# 中序遍历，递归实现
+def input_in_order(root):
+    if root is None:
+        return
+    input_in_order(root.left)
+    print(root.val, ' ', end='')
+    input_in_order(root.right)
+
+
+# 后序遍历
+def last_xu(root, ans=[]):
+    if root is None:
+        return
+    if root.left:
+        last_xu(root.left, ans)
+    if root.right:
+        last_xu(root.right, ans)
+    ans.append(root.val)
+    return ans
+
+
+# 层序遍历,队列实现
+def ceng_xu(root):
+    if root is None:
+        return
+    sol = []
+    curr = root
+    queue = [curr]
+    while queue:
+        curr = queue.pop(0)
+        sol.append(curr.val)
+        if curr.left:
+            queue.append(curr.left)
+        if curr.right:
+            queue.append(curr.right)
+    print(sol)
+
+
+# （递归实现 、迭代实现）查询二叉搜索树中一个具有给点关键字的结点，返回该节点的位置。时间复杂度是O(h),h是树的高度。
+# 递归实现
+def search1(root, value):
+    if root is None or root.val == value:
+        return root.val, '找到 物理地址', root
+    if root.val > value:
+        return search1(root.left, value)
+    if root.val < value:
+        return search1(root.right, value)
+
+
+# 迭代实现
+def search2(root, value):
+    while root is not None and root.val != value:
+        if root.val > value:
+            root = root.left
+        elif root.val < value:
+            root = root.right
+        return root.val, '找到 物理地址', root
+
+
+# 求最大关键字元素
+# 迭代实现
+def max_value1(root):
+    while root is not None and root.left is not None:
+        root = root.right
+    if root is None:
+        return root
+    else:
+        return root.val
+
+
+# 递归实现
+def max_value2(root):
+    if root is None:
+        return root
+    elif root.right is None:
+        return root.val
+    else:
+        return max_value2(root.right)
+
+
+# 求最小关键字元素
+# 递归实现
+def min_value1(root):
+    if root is None:
+        return root
+    elif root.left is None:
+        return root.val
+    else:
+        return min_value1(root.left)
+
+
+# 迭代实现
+def min_value2(root):
+    if root is None:
+        return root
+    while root.left is not None:
+        root = root.left
+    return root.val
+
+
+if __name__ == '__main__':
+    a = Node(15)
+    b = Node(6)
+    c = Node(18)
+    d = Node(4)
+    e = Node(8)
+    f = Node(17)
+    g = Node(20)
+    h = Node(13)
+    i = Node(9)
+    a.left = b
+    a.right = c
+    b.left = d
+    b.right = e
+    c.left = f
+    c.right = g
+    e.right = h
+    h.left = i
+    print(search1(a, 13))
+    print(search2(a, 20))
+    print(max_value1(a))
+    print(max_value2(a))
+    print(min_value1(a))
+    print(min_value2(a))
+    print('中序遍历', ' ', end='')
+    input_in_order(a)
+    print()
+    print('层序遍历', ' ', end='')
+    ceng_xu(a)
+    print('先序遍历', ' ', end='')
+    first_xu(a)
+    print()
+    print('后序遍历', ' ', end='')
+    print(last_xu(a))
