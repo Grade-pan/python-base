@@ -1,0 +1,47 @@
+# 附加链表只能到尾部
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+
+class double_link_list:
+    def __init__(self):
+        self.head = None
+
+    def head_push(self, next_val):
+        NewNode = Node(next_val)
+        NewNode.next = self.head
+        if self.head is not None:
+            self.head.prev = NewNode
+        self.head = NewNode
+
+    def append(self, new_data):
+        NewNode = Node(new_data)
+        NewNode.next = None
+        if self.head is None:
+            NewNode.prev = None
+            self.head = NewNode
+            return
+        last = self.head
+        while last.next is not None:
+            last = last.next
+        last.next = NewNode
+        NewNode.prev = last
+        return
+
+    def list_print(self):
+        print_val = self.head
+        while print_val:
+            print(print_val.data)
+            print_val = print_val.next
+
+
+A_list = double_link_list()
+A_list.head_push(1)
+A_list.head_push(2)
+A_list.append(6)  # 追加元素
+A_list.head_push(3)
+A_list.append(7)  # 追加元素
+A_list.list_print()
