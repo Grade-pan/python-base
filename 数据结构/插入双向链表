@@ -1,0 +1,43 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+
+class double_link_list:
+    def __init__(self):
+        self.head = None
+
+    def head_push(self, next_val):
+        NewNode = Node(next_val)
+        NewNode.next = self.head
+        if self.head is not None:
+            self.head.prev = NewNode
+        self.head = NewNode
+
+    def insert_A(self, new_node, new_data):
+        if new_node is None:
+            return
+        NewNode = Node(new_data)
+        # 和上一节点建立关系
+        NewNode.next = new_node.next
+        new_node.next = NewNode
+        NewNode.prev = new_node
+        if NewNode.next is not None:  # 插入的不是尾部
+            NewNode.next.prev = NewNode  # 和下一节点建立关系
+
+    def list_print(self):
+        print_val = self.head
+        while print_val:
+            print(print_val.data)
+            print_val = print_val.next
+
+
+A_list = double_link_list()
+A_list.head_push(1)
+A_list.head_push(2)
+A_list.head_push(3)
+A_list.insert_A(A_list.head.next, 13)
+A_list.list_print()
+
