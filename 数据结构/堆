@@ -1,0 +1,18 @@
+import heapq
+
+# 将输入转化为堆
+H = [1, 7, 2, 3, 6, 5, 4]
+heapq.heapify(H)
+print(H)
+
+# 插入堆
+heapq.heappush(H, 0)
+print(H)
+
+# 从堆中移除
+heapq.heappop(H)
+print(H)
+
+# 替换堆
+heapq.heapreplace(H, 23)
+print(H)
